@@ -8,6 +8,13 @@ height = 600 - margin.top - margin.bottom;
 nums = {};
 let modal_caption = ""
 
+
+$("#letter_name, #letter_email, #letter_city, #letter_country").keyup(function(){
+  if (($("#letter_name").val() !== "") && ($("#letter_email").val().includes("@")) ){
+    $('#letter_submit').prop('disabled', false);
+  }
+})
+
 ///SIGN UP FORM
 $("#letter_submit").click(function(e){
   e.preventDefault();

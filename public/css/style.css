@@ -95,11 +95,16 @@ button {
   background: #00004b;
   border-bottom: 1px solid white;
   color: white;
-  transition: all 0.2s;
-  height: 2.5rem; }
+  transition: all 0.2s; }
+  button#subscribe_submit {
+    height: 2.5rem; }
   button:hover {
     background: white;
     color: #00004b; }
+  button:disabled, button[disabled] {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666; }
   .table button {
     background: white;
     border-bottom: 1px solid #00004b;

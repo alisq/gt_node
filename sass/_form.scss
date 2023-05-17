@@ -27,12 +27,22 @@ button {
     border-bottom:1px solid $white;
     color:$white;
     transition:all 0.2s;
-    height:2.5rem;
     
+    &#subscribe_submit {
+      height:2.5rem;
+    }
     &:hover {
       background:$white;
       color:$black;
     }
+
+
+    &:disabled,
+    &[disabled]{
+      border: 1px solid #999999;
+      background-color: #cccccc;
+      color: #666666;
+}
 
     .table & {
       background:$white;
