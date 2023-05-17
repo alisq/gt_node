@@ -76,21 +76,21 @@ option,
 select,
 input {
   font-size: 18px;
-  border: none;
   border-radius: 0;
-  border-bottom: 1px solid #00004b;
-  font-size: 0.8rem;
-  padding: 0.1rem; }
+  border: 1px solid #00004b;
+  font-size: 0.9rem;
+  padding: 0.3rem;
+  margin-bottom: 0.5rem; }
 
 input[type="text"],
 input[type="email"] {
   width: 100%; }
 
 button {
-  font-size: 18px;
+  font-size: 0.9rem;
   border-radius: 0;
   margin: 0;
-  padding: 0 1em;
+  padding: 0.5rem 1em;
   border: 0;
   background: #00004b;
   border-bottom: 1px solid white;

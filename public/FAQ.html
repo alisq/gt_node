@@ -209,21 +209,25 @@
       <a href="mailto:gentrificationtax@gmail.com">gentrificationtax@gmail.com</a>
 <br /><Br />
 
-      <form>
-        <h5></h5>
-        <p><strong>Subscribe to our newsletter</strong><br/>for more information.</p>
-        <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-          <label for="email" class="visually-hidden">Email address</label>
-          <input id="email" type="text" placeholder="Email address">
-          <button type="button">Subscribe</button>
-        </div>
-      </form>
+     
+<form method="POST" id="subscribe_form" action="/subscribe" name="subscribe_form" enctype="multipart/form-data">        
+  <div id="form2">
+    
+    <p><strong>Subscribe to our newsletter</strong><br/>for more information.</p>
+    <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+      <label for="footer_email" class="visually-hidden">Email address</label>
+      <input id="footer_email" name="footer_email" type="text" placeholder="Email address">
+      <button id="subscribe_submit" type="subscribe_button">Subscribe</button>
     </div>
   </div>
+  </form>
+
+</div>
+</div>
 </div>
 </div>
 </footer>
-
+   
 
 <!-- Button trigger modal -->
 
@@ -243,19 +247,12 @@
     </div>
   </div>
 </div>
-
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <script src="/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-        <script src="/js/jquery.min.js"></script>
-        <script src="/js/jquery.scrollTo.min.js" integrity="sha512-PsJ1f4lw0Jrga4wbDOvdWs9DFl88C1vlcH2VQYqgljHBmzmqtGivUkzRHWx2ZxFlnysKUcROqLeuOpYh9q4YNg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        
-<script src="/css/flickity.pkgd.min.js"></script>
-<script src="/js/d3.v7.min.js"></script>
-<script src="js/script.js"></script>
-
-        
-    </body>
+ <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollTo.min.js" integrity="sha512-PsJ1f4lw0Jrga4wbDOvdWs9DFl88C1vlcH2VQYqgljHBmzmqtGivUkzRHWx2ZxFlnysKUcROqLeuOpYh9q4YNg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/js/d3.v7.min.js"></script>
+    <script src="js/script.js" async defer></script>
+</body>
 </html>
