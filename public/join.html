@@ -57,11 +57,9 @@
       
 
         <p>
-          Support the campaign for a municipal tax to fund locally managed, deeply affordable housing.
+          Support the campaign for a municipal tax to fund locally managed, deeply affordable housing by adding your name to the letter below.
         </p>
-        <p>  
-        Sign up for periodic updates:
-        </p>
+        
     </div>
     <div class="col-sm-1"> 
     </div>
@@ -69,10 +67,10 @@
 
   
   
+  <form method="POST" id="letter_form" action="/upload" name="letter_form" enctype="multipart/form-data">        
     
     <div class="row" id="form">
       
-      <form method="POST" id="letter_form" action="/upload" name="letter_form" enctype="multipart/form-data">        
         <div class="col-sm-6">  
         <input type="text" name="your name" id="letter_name" placeholder="your name" value=""/>  
         </div>
@@ -80,22 +78,27 @@
           <input type="text" name="your email" id="letter_email" placeholder="your email" value=""/>  
         </div>
         <div class="col-sm-6">  
+          <br />
           <input type="text" name="city" id="letter_city" placeholder="your city" value=""/>  
         </div>
         <div class="col-sm-6">  
+          <br />
           <input type="text" name="country" id="letter_country" placeholder="country of residence" value=""/>  
         </div>
 
         <div class="col-sm-12">  
+          <br />
           <input type="checkbox" name="updates" id="letter_updates" value="subscribe"/>  Sign me up for periodic updates regarding the campaign.
+          
         </div>
         <div class="col-sm-6">  
+          <br />
           <button id="letter_submit">Submit</button>
         </div>
-      </form>
+      
   
   </div>
-
+</form>
 
 <div id="letter">
 
@@ -190,6 +193,7 @@ Gentrification Tax Action
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <script src="/js/jquery.scrollTo.min.js" integrity="sha512-PsJ1f4lw0Jrga4wbDOvdWs9DFl88C1vlcH2VQYqgljHBmzmqtGivUkzRHWx2ZxFlnysKUcROqLeuOpYh9q4YNg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="/js/d3.v7.min.js"></script>
         <script src="js/script.js" async defer></script>

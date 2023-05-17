@@ -5,7 +5,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var Datastore = require('nedb');
 var db = new Datastore({ filename: 'data.json', autoload: true });
 var subcribers_db = new Datastore({ filename: 'subscribers.json', autoload: true });
-const port = 53828
+const port = 57294
 
 app.use(express.static('public')); //load files from this route
 
