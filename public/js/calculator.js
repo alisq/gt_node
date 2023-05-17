@@ -544,4 +544,4 @@ var g2 = svg2.append("g").attr("transform", "translate("+(width)+",0)").style("c
 
 
 
-calculate()
+// calculate()
