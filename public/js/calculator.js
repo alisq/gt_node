@@ -16,7 +16,7 @@ function nums1(x) {
   //initial attempt at the function via desmos
   function nums2(x) {
   
-    y = Math.pow(1.25,(x-13))*0.3+0.14 
+    y = Math.pow(1.25,(x-14.5))*0.3+0.7 
     return y 
   }
   let datas = [];
@@ -133,16 +133,19 @@ yPos3 = nums2(23-yPos3)
 
     
 
+    yearsOwned = 23-(nums.boughtYear-2000);
+
 
     
  svg2
     .append("circle")
     .attr("class", "dot rateDot")
     .attr("r", 10)
-    .attr("cx", x(nums.boughtYear-2000) )
+    .attr("cx", x(yearsOwned ))  
+    
     .attr("cy", function(){
-
-        return y2(datas[nums.boughtYear-2000].y) 
+        return y2(datas[yearsOwned = 23-(nums.boughtYear-2000)
+        ].y) 
     })
     // .style("stroke","black")
     .style("fill", "black")
@@ -153,10 +156,10 @@ yPos3 = nums2(23-yPos3)
     
 //labels for other dot.
 txt2 = svg2.append("text")
-.attr("x",x(nums.boughtYear-2000)).attr("y",y2(datas[nums.boughtYear-2000].y))
+.attr("x",x(yearsOwned)).attr("y",y2(datas[yearsOwned].y))
 .attr("class","rateBox")
 .style("transform","translate(-30px,-30px)")
-.text("proposed rate: "+((datas[nums.boughtYear-2000].y)*10).toFixed(1)+"%");
+.text("proposed rate: "+((datas[yearsOwned].y)*10).toFixed(1)+"%");
 
 
 
@@ -434,8 +437,8 @@ function formatCurrency(input, blur) {
       svg.append("path")
         .datum(data)
         .attr("fill", "none")
-        .attr("stroke", "steelblue")
-        .attr("stroke-width", 1.5)
+        .attr("stroke", "#00004B")
+        .attr("stroke-width", 5)
         .attr("d", d3.line()
           .x(function(d) { return x(d.date) })
           .y(function(d) { return y(d.value) })
@@ -502,6 +505,7 @@ svg2.append("path")
     .datum(datas)
     .attr("class", "line")
     .style("stroke","red")
+    .style("stroke-width",5)
            .style("fill", "white")
            .style("opacity", 1)
            .style("fill", "none")
