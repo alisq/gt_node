@@ -14,43 +14,37 @@ function nums1(x) {
   
   
   //initial attempt at the function via desmos
-  function nums2(x) {
+  function rateEquation(x) {
   
     y = Math.pow(1.25,(x-14.5))*0.3+0.7 
     return y 
   }
-  let datas = [];
-  for (let i=0;i<23;i++) {
-    datas.push({"x":i,"y":nums2(23-i)})
-  }
-  console.log(datas)
-  
 
-// const y2 = d3.scaleLinear()
-// .domain([2.9339677238464357,0.1606158430208])
-//     .range([16,height-29]);
-    
+  let suggestedRateData = [];
+  for (let i=0;i<23;i++) {
+    suggestedRateData.push({"x":i,"y":rateEquation(23-i)})
+  }
+
 
 const y2 = d3.scaleLinear()
 .domain([2.9339677238464357,0.1606158430208])
     .range([16,height-29]);
 
     
-// console.log(y2(nums2(20)))
+// console.log(y2(rateEquation(20)))
 
 $("#bought-year").change(function(){
-    $(".rateCircle, .boughtCircle, .boughtBox, .soldBox, .rateBox, .rateDot").remove();
-    $("#suggested-rate").text(getRate()+"%")
+    calculate();
 }) 
 
 $("#calculate").click(function(){
-    $(".rateCircle, .boughtCircle, .boughtBox, .soldBox, .rateBox, .rateDot").remove();
+    
     calculate();
 })
 
 
 $("#percent").change(function(){
-    $(".rateCircle, .boughtCircle, .boughtBox, .soldBox, .rateBox, .rateDot").remove();
+    
     calculate();
 })
 
@@ -61,7 +55,8 @@ function numberWithCommas(x) {
 
 function calculate() {
 
-    
+  $(".rateCircle, .boughtCircle, .boughtBox, .soldBox, .rateBox, .rateDot").remove();
+  
 
 
     {
@@ -73,20 +68,15 @@ function calculate() {
         nums.percent = $("#percent").val()*0.01
 
     
-        years = numberWithCommas(2022-nums.boughtYear);
+        years = numberWithCommas(2023-nums.boughtYear);
         increment = numberWithCommas((nums.soldFor-nums.boughtFor).toFixed(2));
     
-        formula = 25-(2022-$("#bought-year").val());
+        
+        console.log("see",getRate())
     
-        if (formula > 25) {
-            formula = 25;
-        } else if (formula < 4) {
-            formula = 4;
-        }
+        $("#suggested-rate").text((getRate()*10).toFixed(1)+"%")
     
-        $("#suggested-rate").val(formula+"%")
-    
-        a =(nums.soldFor-nums.boughtFor)*(formula/100)
+        a =(nums.soldFor-nums.boughtFor)*(getRate())
         a = a.toFixed(2)
         a = numberWithCommas(a);
     
@@ -108,7 +98,7 @@ function calculate() {
 
 
 
-let xPos =  ((nums.boughtYear-2000)/22)*width+"px"
+let xPos =  ((nums.boughtYear-2000)/23)*width+"px"
 let yPos =  height-(nums.boughtFor/2000000)*height+"px"
 
 let xPos2 = width+"px";
@@ -120,10 +110,10 @@ let xPos3 = (nums.boughtYear-2000)
 
 let yPos3 = (nums.boughtYear-2000)
 // console.log(yPos3)
-yPos3 = nums2(23-yPos3)
+yPos3 = rateEquation(23-yPos3)
 // console.log(yPos3)
-yPos3 = nums2(23-yPos3)
-// yPos3 = height-(2.55-nums2(23-yPos3))*height
+yPos3 = rateEquation(23-yPos3)
+// yPos3 = height-(2.55-rateEquation(23-yPos3))*height
 // console.log(yPos3)
 
 
@@ -144,8 +134,7 @@ yPos3 = nums2(23-yPos3)
     .attr("cx", x(yearsOwned ))  
     
     .attr("cy", function(){
-        return y2(datas[yearsOwned = 23-(nums.boughtYear-2000)
-        ].y) 
+        return y2(getRate()) 
     })
     // .style("stroke","black")
     .style("fill", "black")
@@ -156,40 +145,11 @@ yPos3 = nums2(23-yPos3)
     
 //labels for other dot.
 txt2 = svg2.append("text")
-.attr("x",x(yearsOwned)).attr("y",y2(datas[yearsOwned].y))
+.attr("x",x(yearsOwned)).attr("y",y2(getRate()))
 .attr("class","rateBox")
 .style("transform","translate(-30px,-30px)")
-.text("proposed rate: "+((datas[yearsOwned].y)*10).toFixed(1)+"%");
+.text("proposed rate: "+(getRate()*10).toFixed(1)+"%");
 
-
-
-
-
-
-//  // Add the dots
-//  svg2.selectAll("circle")
-//  .data(datas)
-//  .enter().append("circle")
-//  .attr("class", "dot")
-//  .attr("r", 3.5)
-//  .attr("cx", function(d) {
-//      return x(d.x);
-//  })
-//  .attr("cy", function(d) {
-//     //  console.log( y2(d.y))
-//      return y2(d.y)
-//  })
-//  .style("stroke","black")
-//  .style("fill", "white")
-//  .style("opacity", 1);
-
-
-
-
-
-// var div = d3.select("body").append("div")	
-// .attr("class", "tooltip")				
-// .style("opacity", 1);
 
 
 
@@ -259,15 +219,12 @@ svg
 }
 
 function getRate() {
-    formula = 25-(2022-$("#bought-year").val());
+    yO = 2023-$("#bought-year").val();
     
-    if (formula > 25) {
-        formula = 25;
-    } else if (formula < 4) {
-        formula = 4;
-    }
-
-    return formula
+    if (yO > 22) {
+        yO = 22;
+    } 
+     return suggestedRateData[yO].y
 }
 
 // function percentIncrease(year) {
@@ -412,7 +369,7 @@ function formatCurrency(input, blur) {
       return { date : d3.timeParse("%Y")(d.date), value : d.value }
     }).then(
   
-    // Now I can use this dataset:
+    // Now I can use this suggestedRateDataet:
     function(data) {
   
       // Add X axis --> it is a date format
@@ -478,11 +435,11 @@ function formatCurrency(input, blur) {
 
 
 /////
-// var datas = [{"x":0,"y":0.07032144101036253},{"x":1,"y":0.07058451551092236},{"x":2,"y":0.07106113424991078},{"x":3,"y":0.07192062412012551},{"x":4,"y":0.07345760916499257},{"x":5,"y":0.07616536351308369},{"x":6,"y":0.08081245054420991},{"x":7,"y":0.0884406384370634},{"x":8,"y":0.10009177814512772},{"x":9,"y":0.11606468019064661},{"x":10,"y":0.135},{"x":11,"y":0.15393531980935343},{"x":12,"y":0.1699082218548723},{"x":13,"y":0.18155936156293662},{"x":14,"y":0.1891875494557901},{"x":15,"y":0.19383463648691635},{"x":16,"y":0.19654239083500746},{"x":17,"y":0.1980793758798745},{"x":18,"y":0.19893886575008923},{"x":19,"y":0.19941548448907764}]
+// var suggestedRateData = [{"x":0,"y":0.07032144101036253},{"x":1,"y":0.07058451551092236},{"x":2,"y":0.07106113424991078},{"x":3,"y":0.07192062412012551},{"x":4,"y":0.07345760916499257},{"x":5,"y":0.07616536351308369},{"x":6,"y":0.08081245054420991},{"x":7,"y":0.0884406384370634},{"x":8,"y":0.10009177814512772},{"x":9,"y":0.11606468019064661},{"x":10,"y":0.135},{"x":11,"y":0.15393531980935343},{"x":12,"y":0.1699082218548723},{"x":13,"y":0.18155936156293662},{"x":14,"y":0.1891875494557901},{"x":15,"y":0.19383463648691635},{"x":16,"y":0.19654239083500746},{"x":17,"y":0.1980793758798745},{"x":18,"y":0.19893886575008923},{"x":19,"y":0.19941548448907764}]
 
 
 var x = d3.scaleLinear()
-.domain(d3.extent(datas, function(d) { return d.x; }))
+.domain(d3.extent(suggestedRateData, function(d) { return d.x; }))
     .range([0, width]);
 
 var y = d3.scaleLinear()
@@ -502,7 +459,7 @@ var svg2 = d3.select("#chart2")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 svg2.append("path")
-    .datum(datas)
+    .datum(suggestedRateData)
     .attr("class", "line")
     .style("stroke","red")
     .style("stroke-width",5)
